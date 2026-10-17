@@ -11,7 +11,7 @@ HW_OPTIMIZATION = True
 STARTING_NEURONS = 16
 NUM_LAYERS = 4
 LEARNING_RATE = 0.001
-DROPOUT = 0.3
+DROPOUT = 0.5
 KERNEL_SIZE = (3, 3)
 EPOCHS = 40
 
@@ -54,7 +54,7 @@ model.add(Sequential([
 model.add(layers.Rescaling(1. / 255.))
 
 for layer in range(NUM_LAYERS):
-    model.add(layers.Conv2D(STARTING_NEURONS * pow(2, layer), KERNEL_SIZE, activation = 'relu'))
+    model.add(layers.Conv2D(STARTING_NEURONS * pow(2, layer), KERNEL_SIZE, activation = 'relu', padding = 'same'))
     model.add(layers.MaxPool2D((2, 2))) # Halve the data.
 
 model.add(layers.Flatten())
